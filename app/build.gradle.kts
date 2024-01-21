@@ -32,17 +32,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_19
-        targetCompatibility = JavaVersion.VERSION_19
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "19"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.5"
+        kotlinCompilerExtensionVersion = "1.4.2"
     }
     packaging {
         resources {
@@ -63,7 +63,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
 
     //Navigation
-    val navVersion = "2.5.3"
+    val navVersion = "2.7.6"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
@@ -73,6 +73,10 @@ dependencies {
 
     //Manupulador de imagenes Coil
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    //Navigation compose
+    val composeNavVersion = "2.7.6"
+    implementation("androidx.navigation:navigation-compose:$composeNavVersion")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
