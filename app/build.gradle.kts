@@ -66,6 +66,7 @@ dependencies {
     val navVersion = "2.7.6"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -73,10 +74,6 @@ dependencies {
 
     //Manupulador de imagenes Coil
     implementation("io.coil-kt:coil-compose:2.5.0")
-
-    //Navigation compose
-    val composeNavVersion = "2.7.6"
-    implementation("androidx.navigation:navigation-compose:$composeNavVersion")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
