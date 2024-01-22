@@ -10,5 +10,6 @@ data class BeerModel (
     val description: String,
     @SerializedName("image_url")
     val image: String,
-
+    @SerializedName("abv")
+    val abv: String
 )

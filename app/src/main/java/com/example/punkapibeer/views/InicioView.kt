@@ -25,13 +25,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.punkapibeer.components.CardBeer
 import com.example.punkapibeer.components.MainTopBar
+import com.example.punkapibeer.models.BeerModel
+import com.example.punkapibeer.navigation.AppScreens
 import com.example.punkapibeer.utils.Constantes
 import com.example.punkapibeer.viewmodels.BeersViewModel
 
 @Composable
 fun InicioView(
     navController: NavController,
-    viewModel: BeersViewModel
+    viewModel: BeersViewModel,
 ){
     Scaffold(
         topBar = {
@@ -47,7 +49,6 @@ fun InicioView(
     }
 }
 
-
 @Composable
 fun InitViewContent(
     navController: NavController,
@@ -61,9 +62,7 @@ fun InitViewContent(
     var textValue by remember { mutableStateOf("") }
 
     LaunchedEffect(textValue) {
-        println("Busqueda del usuario: $textValue")
         viewModel.getNombre(textValue)
-        // Realiza acciones adicionales según sea necesario
     }
 
     Column(
@@ -90,8 +89,19 @@ fun InitViewContent(
         ) {
             beers?.let { it ->
                 items(it.size) {
-                    CardBeer(beer = beers!![it]) { //irteramnos de la lista beer
-                        //Aqui pondremos la accion que queremos que haga cuando se oprima
+                    CardBeer(beer = beers!![it]) { //iteramos de la lista beer
+                        //Cuando se seleccione mandamos el nombre de la cerveza seleccionada
+                        //Actualizo el beerState
+                        viewModel.updateBeerState(
+                            BeerModel(
+                                name = beers!![it].name,
+                                description = beers!![it].description,
+                                image = beers!![it].image,
+                                abv = beers!![it].abv,
+                            )
+                        )
+                        navController.navigate(route = AppScreens.BeerScreen.route)
+
                     }
                     Text(
                         text = beers!![it].name,
