@@ -20,7 +20,8 @@ class BeersViewModel: ViewModel() {
     private val _beers = MutableStateFlow<List<BeerModel>?>(null)
 
     //Val que consume nuestras listas que nos permitirá modificar la informacion de la lista de beer
-    //dentro del viewModel y creamos una variabe que sera de solo lectura para la parte visual del usuario
+    //dentro del viewModel y creamos una variabe que sera de solo lectura para la parte visual del
+    // usuario
     val beers = _beers.asStateFlow()
 
     //Cada vez que se crea llamaremos a init
@@ -28,15 +29,21 @@ class BeersViewModel: ViewModel() {
         getNombre("")
     }
 
-    //TODO: Meter el método que te pide nombre  y al clickar llamar a obtener beer
-
     fun getNombre(beerName: String){
         viewModelScope.launch {
             Log.d("BeerViewModel", "Beer sugerida por usuario: $beerName")
             obtenerBeer(beerName)
-
         }
 
+    }
+    // Estado de la cerveza
+    private var _beerState = BeerModel("", "", "", "")
+    val beerState: BeerModel
+        get() = _beerState
+
+    // Función para actualizar el estado de la cerveza
+    fun updateBeerState(newBeer: BeerModel) {
+        _beerState = newBeer
     }
     //metodos de viewModel en nuestro caso solo un metodo
     private fun obtenerBeer(beerNameSearched: String){
